@@ -8,10 +8,17 @@ public class Board {
 
     // create a board from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
-    public Board(int[][] tiles)
+    private static int[][] boardTiles;
+
+    public Board(int[][] tiles) {
+        boardTiles = tiles;
+    }
 
     // string representation of this board
-    public String toString()
+    public String toString() {
+        String stringRep = "";
+        return stringRep;
+    }
 
     // board dimension n
     public int dimension()
