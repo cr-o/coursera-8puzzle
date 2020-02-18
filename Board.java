@@ -32,9 +32,6 @@ public class Board {
                 if (i == rows - 1 && n == cols - 1) {
                     fillVal = 0;
                 }
-                else {
-
-                }
                 goalBoard[i][n] = fillVal;
                 fillVal++;
             }
@@ -113,7 +110,18 @@ public class Board {
 
     // does this board equal y?
     public boolean equals(Object y) {
-        return boardTiles.equals(y);
+        if (y == this) {
+            return true;
+        }
+        if (y == null) {
+            return false;
+        }
+        if (y.getClass() != this.getClass()) {
+            return false;
+        }
+        Board that = (Board) y;
+        return (Arrays.deepEquals(this.boardTiles, that.boardTiles);
+
     }
 
     public Iterable<Board> neighbors() {
