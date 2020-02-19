@@ -135,18 +135,56 @@ public class Board {
             for (int n = 0; i < cols; n++) {
                 if (boardTiles[i][n] == 0) {
                     emptyRow = i;
-                    emptyCol = 0;
+                    emptyCol = n;
                     break;
                 }
             }
         }
-
+        int temp = 0;
+        Board copy;
+        if (emptyRow < rows - 1) {
+            // try moving down a row
+            copy = this;
+            temp = copy.boardTiles[emptyRow][emptyCol];
+            copy.boardTiles[emptyRow][emptyCol] = copy.boardTiles[emptyRow + 1][emptyCol];
+            copy.boardTiles[emptyRow + 1][emptyCol] = temp;
+            queue.enqueue(copy);
+        }
+        if (emptyRow > 0) {
+            // try moving up a row
+            copy = this;
+            temp = copy.boardTiles[emptyRow][emptyCol];
+            copy.boardTiles[emptyRow][emptyCol] = copy.boardTiles[emptyRow - 1][emptyCol];
+            copy.boardTiles[emptyRow - 1][emptyCol] = temp;
+            queue.enqueue(copy);
+        }
+        if (emptyCol < cols - 1) {
+            // try moving right a column
+            copy = this;
+            temp = copy.boardTiles[emptyRow][emptyCol];
+            copy.boardTiles[emptyRow][emptyCol] = copy.boardTiles[emptyRow][emptyCol + 1];
+            copy.boardTiles[emptyRow][emptyCol + 1] = temp;
+            queue.enqueue(copy);
+        }
+        if (emptyCol > 0) {
+            // try moving left a column
+            copy = this;
+            temp = copy.boardTiles[emptyRow][emptyCol];
+            copy.boardTiles[emptyRow][emptyCol] = copy.boardTiles[emptyRow][emptyCol - 1];
+            copy.boardTiles[emptyRow][emptyCol - 1] = temp;
+            queue.enqueue(copy);
+        }
         return queue;
+    }
+
+    private int[][] copyTiles(Board original) {
+        
     }
 
 
     // a board that is obtained by exchanging any pair of tiles
     public Board twin() {
+        Board copy = this;
 
     }
 
