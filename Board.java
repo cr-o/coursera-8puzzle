@@ -129,6 +129,18 @@ public class Board {
         // look at spaces directly right, below, left, above the 0 square
         // if within boundaries, swap with the 0 square
         // add to queue
+        int emptyRow = 0;
+        int emptyCol = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int n = 0; i < cols; n++) {
+                if (boardTiles[i][n] == 0) {
+                    emptyRow = i;
+                    emptyCol = 0;
+                    break;
+                }
+            }
+        }
+
         return queue;
     }
 
