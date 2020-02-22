@@ -210,8 +210,10 @@ public class Board {
         int[][] random = { { 1, 4, 3 }, { 5, 0, 7 }, { 8, 2, 6 } };
         Board board = new Board(random);
         Iterable<Board> it = board.neighbors();
-        board.twin();
+        Board twin = board.twin();
         boolean bl = board.isGoal();
+        int[][] solved = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 0 } };
+        Board solvedBoard = new Board(solved);
+        boolean b2 = solvedBoard.isGoal();
     }
-
 }
