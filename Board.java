@@ -120,7 +120,7 @@ public class Board {
             return false;
         }
         Board that = (Board) y;
-        return (Arrays.deepEquals(this.boardTiles, that.boardTiles);
+        return (Arrays.deepEquals(this.boardTiles, that.boardTiles));
 
     }
 
@@ -132,7 +132,7 @@ public class Board {
         int emptyRow = 0;
         int emptyCol = 0;
         for (int i = 0; i < rows; i++) {
-            for (int n = 0; i < cols; n++) {
+            for (int n = 0; n < cols; n++) {
                 if (boardTiles[i][n] == 0) {
                     emptyRow = i;
                     emptyCol = n;
@@ -144,7 +144,7 @@ public class Board {
         Board copy;
         if (emptyRow < rows - 1) {
             // try moving down a row
-            copy = this;
+            copy = new Board(this.copyTiles());
             temp = copy.boardTiles[emptyRow][emptyCol];
             copy.boardTiles[emptyRow][emptyCol] = copy.boardTiles[emptyRow + 1][emptyCol];
             copy.boardTiles[emptyRow + 1][emptyCol] = temp;
@@ -152,7 +152,7 @@ public class Board {
         }
         if (emptyRow > 0) {
             // try moving up a row
-            copy = this;
+            copy = new Board(this.copyTiles());
             temp = copy.boardTiles[emptyRow][emptyCol];
             copy.boardTiles[emptyRow][emptyCol] = copy.boardTiles[emptyRow - 1][emptyCol];
             copy.boardTiles[emptyRow - 1][emptyCol] = temp;
@@ -160,7 +160,7 @@ public class Board {
         }
         if (emptyCol < cols - 1) {
             // try moving right a column
-            copy = this;
+            copy = new Board(this.copyTiles());
             temp = copy.boardTiles[emptyRow][emptyCol];
             copy.boardTiles[emptyRow][emptyCol] = copy.boardTiles[emptyRow][emptyCol + 1];
             copy.boardTiles[emptyRow][emptyCol + 1] = temp;
@@ -168,7 +168,7 @@ public class Board {
         }
         if (emptyCol > 0) {
             // try moving left a column
-            copy = this;
+            copy = new Board(this.copyTiles());
             temp = copy.boardTiles[emptyRow][emptyCol];
             copy.boardTiles[emptyRow][emptyCol] = copy.boardTiles[emptyRow][emptyCol - 1];
             copy.boardTiles[emptyRow][emptyCol - 1] = temp;
@@ -177,20 +177,41 @@ public class Board {
         return queue;
     }
 
-    private int[][] copyTiles(Board original) {
-        
+    private int[][] copyTiles() {
+        int[][] copy = new int[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int n = 0; n < cols; n++) {
+                copy[i][n] = boardTiles[i][n];
+            }
+        }
+        return copy;
     }
 
 
     // a board that is obtained by exchanging any pair of tiles
     public Board twin() {
-        Board copy = this;
-
+        Board copy = new Board(this.copyTiles());
+        int temp = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int n = 0; n < cols - 1; n++) {
+                if (copy.boardTiles[i][n] != 0 && copy.boardTiles[i][n + 1] != 0) {
+                    temp = copy.boardTiles[i][n];
+                    copy.boardTiles[i][n] = copy.boardTiles[i][n + 1];
+                    copy.boardTiles[i][n + 1] = temp;
+                    return copy;
+                }
+            }
+        }
+        return copy;
     }
 
     // unit testing (not graded)
     public static void main(String[] args) {
-
+        int[][] random = { { 1, 4, 3 }, { 5, 0, 7 }, { 8, 2, 6 } };
+        Board board = new Board(random);
+        Iterable<Board> it = board.neighbors();
+        board.twin();
+        boolean bl = board.isGoal();
     }
 
 }
