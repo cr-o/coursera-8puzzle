@@ -12,7 +12,34 @@ public class Solver {
 
     // find a solution to the initial board (using the A* algorithm)
     public Solver(Board initial) {
-        MinPQ<Board> minPQ = new MinPQ<>();
+        int trackMoves = 0;
+        MinPQ<TreeNode> minPQ = new MinPQ<>();
+        TreeNode first = new TreeNode(initial, trackMoves);
+        minPQ.insert(first);
+        MinPQ<TreeNode> gameTree = new MinPQ<>();
+        gameTree.insert(first);
+
+        while (!minPQ.isEmpty()) {
+            for (Board neighbor : minPQ.min().board.neighbors()) {
+                TreeNode neighborNode = new TreeNode(neighbor, trackMoves);
+                minPQ.insert(neighborNode);
+            }
+
+        }
+    }
+
+    private class TreeNode {
+        private Board board;
+        private int moves = 0;
+        private int manhattanPriority = 0;
+        private int hammingPriority = 0;
+
+        private TreeNode(Board givenBoard, int givenMoves) {
+            board = givenBoard;
+            moves = givenMoves;
+            manhattanPriority = moves + board.manhattan();
+            hammingPriority = moves + board.hamming();
+        }
     }
 
     // is the initial board solvable? (see below)
