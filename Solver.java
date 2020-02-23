@@ -6,9 +6,12 @@
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.MinPQ;
+import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Solver {
+    private int solveMoves;
+    private Queue<Board> solutionBoard = new Queue<>();
 
     // find a solution to the initial board (using the A* algorithm)
     public Solver(Board initial) {
@@ -16,19 +19,47 @@ public class Solver {
         MinPQ<TreeNode> minPQ = new MinPQ<>();
         TreeNode first = new TreeNode(initial, trackMoves);
         minPQ.insert(first);
-        MinPQ<TreeNode> gameTree = new MinPQ<>();
-        gameTree.insert(first);
+        Board prevBoard = first.board;
 
-        while (!minPQ.isEmpty()) {
+        Board altInitial = initial.twin();
+        int altTrackMoves = 0;
+        MinPQ<TreeNode> altMinPQ = new MinPQ<>();
+        TreeNode altFirst = new TreeNode(altInitial, altTrackMoves);
+        altMinPQ.insert(altFirst);
+        Board altPrevBoard = altFirst.board;
+
+        while (!minPQ.isEmpty() || !altMinPQ.isEmpty()) {
+            Board deletedMin;
             for (Board neighbor : minPQ.min().board.neighbors()) {
-                TreeNode neighborNode = new TreeNode(neighbor, trackMoves);
-                minPQ.insert(neighborNode);
+                if (!neighbor.equals(prevBoard)) {
+                    trackMoves++;
+                    TreeNode neighborNode = new TreeNode(neighbor, trackMoves);
+                    minPQ.insert(neighborNode);
+                    prevBoard = neighbor;
+                }
             }
-
+            deletedMin = minPQ.delMin().board;
+            solutionBoard.enqueue(deletedMin);
+            if (deletedMin.isGoal()) {
+                solveMoves = trackMoves;
+                break;
+            }
+            for (Board altNeighbor : altMinPQ.min().board.neighbors()) {
+                if (!altNeighbor.equals(altPrevBoard)) {
+                    altTrackMoves++;
+                    TreeNode altNeighborNode = new TreeNode(altNeighbor, altTrackMoves);
+                    altMinPQ.insert(altNeighborNode);
+                    altPrevBoard = altNeighbor;
+                }
+            }
+            if (altMinPQ.delMin().board.isGoal()) {
+                solveMoves = -1;
+                break;
+            }
         }
     }
 
-    private class TreeNode {
+    private class TreeNode implements Comparable<TreeNode> {
         private Board board;
         private int moves = 0;
         private int manhattanPriority = 0;
@@ -40,21 +71,32 @@ public class Solver {
             manhattanPriority = moves + board.manhattan();
             hammingPriority = moves + board.hamming();
         }
+
+        public int compareTo(TreeNode other) {
+            return Integer.compare(this.hammingPriority, other.hammingPriority);
+            // return Integer.compare(this.manhattanPriority, other.manhattanPriority);
+        }
     }
 
     // is the initial board solvable? (see below)
     public boolean isSolvable() {
-
+        if (solveMoves > 0) {
+            return true;
+        }
+        return false;
     }
 
     // min number of moves to solve initial board
     public int moves() {
-
+        return solveMoves;
     }
 
     // sequence of boards in a shortest solution
     public Iterable<Board> solution() {
-
+        if (isSolvable()) {
+            return solutionBoard;
+        }
+        return null;
     }
 
     // test client (see below)
