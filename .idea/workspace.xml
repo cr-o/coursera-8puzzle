@@ -53,12 +53,13 @@
     <configuration name="Board" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Board" />
       <module name="Algorithms, Part I" />
+      <option name="PROGRAM_PARAMETERS" value="puzzle2x2-00.txt" />
       <method v="2" />
     </configuration>
     <configuration name="Solver" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Solver" />
       <module name="Algorithms, Part I" />
-      <option name="PROGRAM_PARAMETERS" value="puzzle30.txt" />
+      <option name="PROGRAM_PARAMETERS" value="puzzle2x2-04.txt" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -75,29 +76,10 @@
     </todo-panel>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Solver.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Solver.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Solver.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Solver.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="minPQ.min().prevNode.board" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
