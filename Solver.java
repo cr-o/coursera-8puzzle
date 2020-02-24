@@ -15,12 +15,6 @@ public class Solver {
 
     // find a solution to the initial board (using the A* algorithm)
     public Solver(Board initial) {
-        int trackMoves = 0;
-        MinPQ<TreeNode> minPQ = new MinPQ<>();
-        TreeNode first = new TreeNode(initial, trackMoves);
-        minPQ.insert(first);
-        Board prevBoard = first.board;
-
         Board altInitial = initial.twin();
         int altTrackMoves = 0;
         MinPQ<TreeNode> altMinPQ = new MinPQ<>();
@@ -28,7 +22,13 @@ public class Solver {
         altMinPQ.insert(altFirst);
         Board altPrevBoard = altFirst.board;
 
-        while (!minPQ.isEmpty() || !altMinPQ.isEmpty()) {
+        int trackMoves = 0;
+        MinPQ<TreeNode> minPQ = new MinPQ<>();
+        TreeNode first = new TreeNode(initial, trackMoves);
+        minPQ.insert(first);
+        Board prevBoard = first.board;
+
+        while (!minPQ.isEmpty() && !altMinPQ.isEmpty()) {
             Board deletedMin;
             for (Board neighbor : minPQ.min().board.neighbors()) {
                 if (!neighbor.equals(prevBoard)) {
@@ -52,7 +52,8 @@ public class Solver {
                     altPrevBoard = altNeighbor;
                 }
             }
-            if (altMinPQ.delMin().board.isGoal()) {
+            deletedMin = altMinPQ.delMin().board;
+            if (deletedMin.isGoal()) {
                 solveMoves = -1;
                 break;
             }
