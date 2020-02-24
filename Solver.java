@@ -30,15 +30,17 @@ public class Solver {
 
         while (!minPQ.isEmpty() && !altMinPQ.isEmpty()) {
             Board deletedMin;
+            Board altDeletedMin;
+
             for (Board neighbor : minPQ.min().board.neighbors()) {
                 if (!neighbor.equals(prevBoard)) {
                     trackMoves++;
                     TreeNode neighborNode = new TreeNode(neighbor, trackMoves);
                     minPQ.insert(neighborNode);
-                    prevBoard = neighbor;
                 }
             }
             deletedMin = minPQ.delMin().board;
+            prevBoard = deletedMin;
             solutionBoard.enqueue(deletedMin);
             if (deletedMin.isGoal()) {
                 solveMoves = trackMoves;
@@ -49,10 +51,10 @@ public class Solver {
                     altTrackMoves++;
                     TreeNode altNeighborNode = new TreeNode(altNeighbor, altTrackMoves);
                     altMinPQ.insert(altNeighborNode);
-                    altPrevBoard = altNeighbor;
                 }
             }
-            deletedMin = altMinPQ.delMin().board;
+            altDeletedMin = altMinPQ.delMin().board;
+            altPrevBoard = altDeletedMin;
             if (deletedMin.isGoal()) {
                 solveMoves = -1;
                 break;
