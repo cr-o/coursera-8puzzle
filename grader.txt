@@ -5,23 +5,23 @@ ASSESSMENT SUMMARY
 Compilation:  PASSED
 API:          PASSED
 
-Spotbugs:     FAILED (7 warnings)
-PMD:          FAILED (15 warnings)
-Checkstyle:   FAILED (0 errors, 1 warning)
+Spotbugs:     FAILED (6 warnings)
+PMD:          FAILED (14 warnings)
+Checkstyle:   PASSED
 
 Correctness:  36/51 tests passed
 Memory:       15/22 tests passed
-Timing:       4/125 tests passed
+Timing:       8/125 tests passed
 
-Aggregate score: 59.81%
+Aggregate score: 60.45%
 [Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-7.2K Feb 28 17:25 Board.java
-5.6K Feb 28 17:25 Solver.java
+7.2K Feb 28 17:29 Board.java
+5.6K Feb 28 17:29 Solver.java
 
 
 ********************************************************************************
@@ -61,8 +61,7 @@ M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'bl' but tha
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'it' but that value is never used.  At Board.java:[line 210]
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'hamming' but that value is never used.  At Board.java:[line 217]
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'b2' but that value is never used.  At Board.java:[line 215]
-M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'hammingPriority' is never read. Consider removing it from the class.  At Solver.java:[line 88]
-Warnings generated: 7
+Warnings generated: 6
 
 
 ================================================================
@@ -83,9 +82,8 @@ Solver.java:19: Unnecessary use of fully qualified name 'java.lang.IllegalArgume
 Solver.java:85: The private instance (or static) variable 'board' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 Solver.java:86: The private instance (or static) variable 'moves' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 Solver.java:87: The private instance (or static) variable 'manhattanPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:88: The private instance (or static) variable 'hammingPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 Solver.java:89: The private instance (or static) variable 'prevNode' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-PMD ends with 15 warnings.
+PMD ends with 14 warnings.
 
 
 ================================================================
@@ -99,8 +97,6 @@ PMD ends with 15 warnings.
 
 % custom checkstyle checks for Solver.java
 *-----------------------------------------------------------
-[WARN] Solver.java:96:45: You should not need to call 'hamming()' in this program. Instead, submit the version with 'manhattan()'. [Performance]
-Checkstyle ends with 0 errors and 1 warning.
 
 
 ================================================================
@@ -473,7 +469,7 @@ Test 3a: check moves() with random solvable n-by-n boards
          5  0  2
          4  7  8
 
-    - failed on trial 3 of 1000
+    - failed on trial 75 of 1000
 
 ==> FAILED
 
@@ -496,7 +492,7 @@ Test 3b: check solution() with random solvable n-by-n boards
          5  0  2
          4  7  8
 
-    - failed on trial 163 of 1000
+    - failed on trial 1 of 1000
 
 ==> FAILED
 
@@ -773,15 +769,15 @@ Test 14a: check moves() with random solvable n-by-n boards
   * 100 random 2-by-2 boards that are <= 6 moves from goal
   * 200 random 3-by-3 boards that are <= 20 moves from goal
     - moves() returns wrong value
-    - student   moves() = 22
-    - reference moves() = 16
+    - student   moves() = 17
+    - reference moves() = 15
     - initial board =
         3
-         4  1  5
-         7  6  3
-         8  2  0
+         5  0  1
+         4  7  2
+         8  6  3
 
-    - failed on trial 10 of 200
+    - failed on trial 34 of 200
 
   * 200 random 4-by-4 boards that are <= 20 moves from goal
 
@@ -791,7 +787,7 @@ Test 14a: check moves() with random solvable n-by-n boards
         Number of calls to methods in MinPQ exceeds limit: 10000000
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    - failed on trial 8 of 200
+    - failed on trial 16 of 200
 
 ==> FAILED
 
@@ -800,31 +796,17 @@ Test 14b: check solution() with random solvable n-by-n boards
   * 200 random 3-by-3 boards that are <= 20 moves from goal
     - student solution() returns a sequence of moves that leads to goal state
       but not a shortest such sequence
-    - number of boards in student   solution() = 20
+    - number of boards in student   solution() = 18
     - number of boards in reference solution() = 16
     - initial board =
         3
-         1  0  2
-         4  6  3
-         8  7  5
+         3  5  6
+         0  2  8
+         1  4  7
 
-    - failed on trial 15 of 200
+    - failed on trial 19 of 200
 
   * 200 random 4-by-4 boards that are <= 20 moves from goal
-    - student solution() returns a sequence of moves that leads to goal state
-      but not a shortest such sequence
-    - number of boards in student   solution() = 23
-    - number of boards in reference solution() = 17
-    - initial board =
-        4
-         0  5  2  4
-         6  1  3  8
-         9 14  7 10
-        13 15 12 11
-
-    - failed on trial 3 of 200
-
-  * 200 random 5-by-5 boards that are <= 20 moves from goal
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -832,7 +814,7 @@ Test 14b: check solution() with random solvable n-by-n boards
         Number of calls to methods in MinPQ exceeds limit: 10000000
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    - failed on trial 1 of 200
+    - failed on trial 3 of 200
 
 ==> FAILED
 
@@ -876,9 +858,9 @@ Test 2: Measure memory of MinPQ.
                               deep              max           ending
                filename     memory             size             size
 --------------------------------------------------------------------
-=> passed  puzzle10.txt      29896               35               34
-=> passed  puzzle15.txt      37328               53               52
-=> FAILED  puzzle20.txt   45959928 (128.8x)  124392 (121.1x)  124391 (121.2x)
+=> passed  puzzle10.txt      29456               35               34
+=> passed  puzzle15.txt      36664               53               52
+=> FAILED  puzzle20.txt   43596080 (122.2x)  124392 (121.1x)  124391 (121.2x)
 ==> 2/6 tests passed
 
 
@@ -911,10 +893,10 @@ Test 1: Measure CPU time and check correctness
 
                filename   moves    n  seconds
 ---------------------------------------------
-=> passed  puzzle20.txt      20    3     0.21
-=> passed  puzzle22.txt      22    3     0.46
-=> passed  puzzle21.txt      21    3     0.17
-=> passed  puzzle23.txt      23    3     2.18
+=> passed  puzzle20.txt      20    3     0.23
+=> passed  puzzle22.txt      22    3     0.61
+=> passed  puzzle21.txt      21    3     0.19
+=> passed  puzzle23.txt      23    3     2.27
 ==> 4/25 tests passed
 
 
@@ -935,11 +917,11 @@ Test 3: Count Board operations (that should not get called)
 
                filename    hamming()   toString()
 -------------------------------------------------
-=> FAILED  puzzle20.txt          295516   (8.0x)   0
-=> FAILED  puzzle22.txt          694704   (6.8x)   0
-=> FAILED  puzzle21.txt          313895   (3.0x)   0
-=> FAILED  puzzle23.txt          2648130  (16.8x)   0
-==> 0/25 tests passed
+=> passed  puzzle20.txt            0            0
+=> passed  puzzle22.txt            0            0
+=> passed  puzzle21.txt            0            0
+=> passed  puzzle23.txt            0            0
+==> 4/25 tests passed
 
 
 
@@ -967,7 +949,9 @@ Test 4b: count Board operations (that should get called),
 ==> 0/25 tests passed
 
 
-Total: 4/125 tests passed!
+Total: 8/125 tests passed!
 
 
 ================================================================
+
+
