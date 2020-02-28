@@ -12,12 +12,20 @@ public class Board {
 
     // create a board from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
-    private int[][] boardTiles;
+    private final int[][] boardTiles;
     private int rows;
     private int cols;
 
     public Board(int[][] tiles) {
-        boardTiles = tiles;
+        if (tiles == null) {
+            throw new java.lang.IllegalArgumentException("tiles are null");
+        }
+        boardTiles = new int[tiles.length][tiles[0].length];
+        for (int i = 0; i < tiles.length; i++) {
+            for (int n = 0; n < tiles[0].length; n++) {
+                boardTiles[i][n] = tiles[i][n];
+            }
+        }
         rows = boardTiles.length;
         cols = boardTiles[0].length;
     }
@@ -72,8 +80,18 @@ public class Board {
                 }
                 currNum = (i * rows) + 1 + n;
                 if (boardTiles[i][n] != currNum) {
-                    correctRow = Math.abs(boardTiles[i][n] / rows);
-                    correctCol = Math.abs(boardTiles[i][n] % cols - 1);
+                    if (boardTiles[i][n] % rows == 0) {
+                        correctRow = Math.abs((boardTiles[i][n] / rows) - 1);
+                    }
+                    else {
+                        correctRow = Math.abs(boardTiles[i][n] / rows);
+                    }
+                    if (boardTiles[i][n] % cols == 0) {
+                        correctCol = cols - 1;
+                    }
+                    else {
+                        correctCol = Math.abs(boardTiles[i][n] % cols - 1);
+                    }
                     offset += Math.abs(correctRow - i);
                     offset += Math.abs(correctCol - n);
                 }
@@ -186,7 +204,8 @@ public class Board {
 
     // unit testing (not graded)
     public static void main(String[] args) {
-        int[][] random = { { 1, 4, 3 }, { 5, 0, 7 }, { 8, 2, 6 } };
+        // int[][] random = { { 1, 4, 3 }, { 5, 0, 7 }, { 8, 2, 6 } };
+        int[][] random = { { 1, 0 }, { 2, 3 } };
         Board board = new Board(random);
         Iterable<Board> it = board.neighbors();
         Board twin = board.twin();

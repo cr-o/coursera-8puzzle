@@ -70,7 +70,7 @@ public class Solver {
                 altDeletedMin = altMinPQ.delMin().board;
                 if (altDeletedMin.isGoal()) {
                     solveMoves = -1;
-                    constructSolution(null);
+                    solutionStack = null;
                     break;
                 }
             }

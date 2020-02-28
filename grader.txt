@@ -5,23 +5,23 @@ ASSESSMENT SUMMARY
 Compilation:  PASSED
 API:          PASSED
 
-Spotbugs:     FAILED (10 warnings)
+Spotbugs:     FAILED (7 warnings)
 PMD:          FAILED (14 warnings)
 Checkstyle:   FAILED (0 errors, 1 warning)
 
-Correctness:  28/51 tests passed
+Correctness:  33/51 tests passed
 Memory:       15/22 tests passed
 Timing:       3/125 tests passed
 
-Aggregate score: 50.24%
+Aggregate score: 56.12%
 [Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-6.4K Feb 28 14:57 Board.java
-5.5K Feb 28 14:57 Solver.java
+7.2K Feb 28 16:03 Board.java
+5.5K Feb 28 16:03 Solver.java
 
 
 ********************************************************************************
@@ -55,17 +55,14 @@ Solver:
 
 % spotbugs *.class
 *-----------------------------------------------------------
-M V EI_EXPOSE_REP2 EI2: Stores a reference to an externally mutable object in the instance variable 'boardTiles', exposing the internal representation of the class 'Board'. Instead, create a defensive copy of the object referenced by the parameter variable 'tiles' and store that copy in the instance variable 'boardTiles'.  At Board.java:[line 20]
-M D UC_USELESS_OBJECT UC: The object stored in the variable 'solvedBoard' is created and modified, but its value never goes outside of the method 'main()' or produces any side effect.  At Board.java:[line 195]
-M D UC_USELESS_OBJECT UC: The object stored in the variable 'solved' is created and modified, but its value never goes outside of the method 'main()' or produces any side effect.  At Board.java:[line 194]
-M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'twin' but that value is never used.  At Board.java:[line 192]
-M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'manhattan' but that value is never used.  At Board.java:[line 197]
-M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'bl' but that value is never used.  At Board.java:[line 193]
-M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'it' but that value is never used.  At Board.java:[line 191]
-M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'hamming' but that value is never used.  At Board.java:[line 198]
-M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'b2' but that value is never used.  At Board.java:[line 196]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'twin' but that value is never used.  At Board.java:[line 211]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'manhattan' but that value is never used.  At Board.java:[line 216]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'bl' but that value is never used.  At Board.java:[line 212]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'it' but that value is never used.  At Board.java:[line 210]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'hamming' but that value is never used.  At Board.java:[line 217]
+M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'b2' but that value is never used.  At Board.java:[line 215]
 M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'manhattanPriority' is never read. Consider removing it from the class.  At Solver.java:[line 83]
-Warnings generated: 10
+Warnings generated: 7
 
 
 ================================================================
@@ -75,13 +72,13 @@ Warnings generated: 10
 *-----------------------------------------------------------
 Board.java:16: The private instance (or static) variable 'rows' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 Board.java:17: The private instance (or static) variable 'cols' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Board.java:19: The user-supplied array 'tiles' is stored directly. [ArrayIsStoredDirectly]
-Board.java:191: Avoid unused local variables, such as 'it'. [UnusedLocalVariable]
-Board.java:192: Avoid unused local variables, such as 'twin'. [UnusedLocalVariable]
-Board.java:193: Avoid unused local variables, such as 'bl'. [UnusedLocalVariable]
-Board.java:196: Avoid unused local variables, such as 'b2'. [UnusedLocalVariable]
-Board.java:197: Avoid unused local variables, such as 'manhattan'. [UnusedLocalVariable]
-Board.java:198: Avoid unused local variables, such as 'hamming'. [UnusedLocalVariable]
+Board.java:21: Unnecessary use of fully qualified name 'java.lang.IllegalArgumentException' due to existing implicit import 'java.lang.*'. [UnnecessaryFullyQualifiedName]
+Board.java:210: Avoid unused local variables, such as 'it'. [UnusedLocalVariable]
+Board.java:211: Avoid unused local variables, such as 'twin'. [UnusedLocalVariable]
+Board.java:212: Avoid unused local variables, such as 'bl'. [UnusedLocalVariable]
+Board.java:215: Avoid unused local variables, such as 'b2'. [UnusedLocalVariable]
+Board.java:216: Avoid unused local variables, such as 'manhattan'. [UnusedLocalVariable]
+Board.java:217: Avoid unused local variables, such as 'hamming'. [UnusedLocalVariable]
 Solver.java:81: The private instance (or static) variable 'board' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 Solver.java:82: The private instance (or static) variable 'moves' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 Solver.java:83: The private instance (or static) variable 'manhattanPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
@@ -143,113 +140,18 @@ Test 2a: check manhattan() with file inputs
   * puzzle07.txt
   * puzzle17.txt
   * puzzle27.txt
-    - student   manhattan() = 15
-    - reference manhattan() = 17
-        3
-         5  8  7
-         1  4  6
-         3  0  2
-
-
   * puzzle2x2-unsolvable1.txt
-    - student   manhattan() = 2
-    - reference manhattan() = 3
-        2
-         1  0
-         2  3
-
-
-==> FAILED
+==> passed
 
 Test 2b: check manhattan() with random n-by-n boards
   * 2-by-2
-    - student   manhattan() = 3
-    - reference manhattan() = 4
-        2
-         0  1
-         2  3
-
-
-    - failed on trial 3 of 1000
-
   * 3-by-3
-    - student   manhattan() = 12
-    - reference manhattan() = 14
-        3
-         0  6  2
-         7  4  1
-         3  5  8
-
-
-    - failed on trial 2 of 1000
-
   * 4-by-4
-    - student   manhattan() = 35
-    - reference manhattan() = 34
-        4
-         0  6  9  8
-         7  5  4 11
-         2 12  3 13
-        14 15 10  1
-
-
-    - failed on trial 1 of 1000
-
   * 5-by-5
-    - student   manhattan() = 78
-    - reference manhattan() = 84
-        5
-         8 13 24 17  5
-         2  0  7 18 22
-        15 10  1 16 11
-         4 19 14  3 23
-         9  6 21 20 12
-
-
-    - failed on trial 1 of 1000
-
   * 9-by-9
-    - student   manhattan() = 492
-    - reference manhattan() = 500
-        9
-         4 36 78 20 66  5 54 31 40
-        42  6 34 80 69 21 60 44 49
-        61 52 38 45 75 17 65 76 73
-        74 79 12 67 51 43 57  1 11
-        28 47 56 24 48 32 77 33 63
-        55 22 59 18 25  7 58 16 41
-        35 30  2 68 23 70  8 13 62
-        26 46 71 10 53  0 19 39 15
-         9 50 72  3 64 29 37 14 27
-
-
-    - failed on trial 1 of 1000
-
   * 10-by-10
-    - student   manhattan() = 653
-    - reference manhattan() = 680
-        10
-        26 36 92 27 58 33 95 83 51 48
-        23 77 45 38 13 60 37 32 74 42
-        67 89 24 34 59 35  2 79 80  9
-        28 78 82 14  5  0 91 87 15 56
-        30 54 10 96 81 20 17 44 75 65
-        98 41 62 18 21  4 72 11 73 86
-        85 76 61 19 22 63 90 55 94 68
-        53 66 50 70 69 47 52 71  1 16
-        64 84 43  7 29 12 39 57 25 88
-        97 40  8  3 31  6 46 99 49 93
-
-
-    - failed on trial 1 of 1000
-
   * 127-by-127
-    - student   manhattan() = 1365100
-    - reference manhattan() = 1364276
-
-    - failed on trial 1 of 10
-
-==> FAILED
+==> passed
 
 Test 3: check dimension() with random n-by-n boards
   * 2-by-2
@@ -390,11 +292,7 @@ Test 10c: check equals() when board sizes m and n are different
 
 Test 11: check that Board is immutable by changing argument array after
          construction and making sure Board does not mutate
-    - manhattan() different before and after changing 2d array
-    - before = 14
-    - after  = 3345
-
-==> FAILED
+==> passed
 
 Test 12: check that Board is immutable by testing whether methods
          return the same value, regardless of order in which called
@@ -426,66 +324,12 @@ Test 14: check hamming() on a board that is kth neighbor of a board
 
 Test 15: check manhattan() on a board that is a kth neighbor of a board
   * 0th neighbor of puzzle27.txt
-    - student   manhattan() = 15
-    - reference manhattan() = 17
-        3
-         5  8  7
-         1  4  6
-         3  0  2
-
-
   * 1st neighbor of puzzle27.txt
-    - student   manhattan() = 14
-    - reference manhattan() = 16
-        3
-         5  8  7
-         1  4  6
-         3  2  0
-
-
   * 2nd neighbor of puzzle27.txt
-    - student   manhattan() = 15
-    - reference manhattan() = 17
-        3
-         5  8  7
-         0  4  6
-         1  3  2
-
-
   * 13th neighbor of puzzle27.txt
-    - student   manhattan() = 14
-    - reference manhattan() = 16
-        3
-         5  8  7
-         1  4  6
-         0  3  2
-
-
   * 13th neighbor of puzzle00.txt
-    - student   manhattan() = 17
-    - reference manhattan() = 3
-        10
-         1  2  3  4  5  6  7  8  9 10
-        11 12 13 14 15 16 17 18 19 20
-        21 22 23 24 25 26 27 28 29 30
-        31 32 33 34 35 36 37 38 39 40
-        41 42 43 44 45 46 47 48 49 50
-        51 52 53 54 55 56 57 58 59 60
-        61 62 63 64 65 66 67 68 69 70
-        71 72 73 74 75 76 77 78  0 79
-        81 82 83 84 85 86 87 88 89 80
-        91 92 93 94 95 96 97 98 99 90
-
-
   * 13th neighbor of puzzle2x2-unsolvable1.txt
-    - student   manhattan() = 3
-    - reference manhattan() = 2
-        2
-         2  1
-         3  0
-
-
-==> FAILED
+==> passed
 
 Test 16: check hamming() on a board that is a kth twin of a board
   * 0th twin of puzzle27.txt
@@ -498,54 +342,15 @@ Test 16: check hamming() on a board that is a kth twin of a board
 
 Test 17: check manhattan() on a board that is a kth twin of a board
   * 0th twin of puzzle27.txt
-    - student   manhattan() = 15
-    - reference manhattan() = 17
-        3
-         5  8  7
-         1  4  6
-         3  0  2
-
-
   * 1st twin of puzzle27.txt
-    - student   manhattan() = 15
-    - reference manhattan() = 17
-        3
-         8  5  7
-         1  4  6
-         3  0  2
-
-
   * 2nd twin of puzzle27.txt
-    - student   manhattan() = 15
-    - reference manhattan() = 17
-        3
-         5  8  7
-         1  4  6
-         3  0  2
-
-
   * 13th twin of puzzle27.txt
-    - student   manhattan() = 15
-    - reference manhattan() = 17
-        3
-         8  5  7
-         1  4  6
-         3  0  2
-
-
   * 13th twin of puzzle00.txt
   * 13th twin of puzzle2x2-unsolvable1.txt
-    - student   manhattan() = 0
-    - reference manhattan() = 1
-        2
-         1  0
-         3  2
+==> passed
 
 
-==> FAILED
-
-
-Total: 21/26 tests passed!
+Total: 26/26 tests passed!
 
 
 ================================================================
@@ -679,10 +484,10 @@ Test 3a: check moves() with random solvable n-by-n boards
     - initial board =
         3
          1  5  2
-         8  0  3
-         4  7  6
+         7  0  3
+         8  4  6
 
-    - failed on trial 17 of 1000
+    - failed on trial 71 of 1000
 
 ==> FAILED
 
@@ -701,11 +506,11 @@ Test 3b: check solution() with random solvable n-by-n boards
     - number of boards in reference solution() = 9
     - initial board =
         3
-         1  5  2
-         7  0  3
-         8  4  6
+         1  6  2
+         5  0  3
+         4  7  8
 
-    - failed on trial 5 of 1000
+    - failed on trial 2 of 1000
 
 ==> FAILED
 
@@ -751,14 +556,8 @@ Test 6: check moves() on unsolvable puzzles
 
 Test 7: check solution() on unsolvable puzzles
   * puzzle2x2-unsolvable1.txt
-    - student solution() does not return null
-
   * puzzle2x2-unsolvable2.txt
-    - student solution() does not return null
-
   * puzzle3x3-unsolvable1.txt
-    - student solution() does not return null
-
   * puzzle3x3-unsolvable2.txt
 
 
@@ -994,18 +793,6 @@ Test 13b: check solution() with 4-by-4 file inputs
 Test 14a: check moves() with random solvable n-by-n boards
   * 100 random 2-by-2 boards that are <= 6 moves from goal
   * 200 random 3-by-3 boards that are <= 20 moves from goal
-    - moves() returns wrong value
-    - student   moves() = 17
-    - reference moves() = 15
-    - initial board =
-        3
-         6  0  5
-         1  3  2
-         4  7  8
-
-    - failed on trial 26 of 200
-
-  * 200 random 4-by-4 boards that are <= 20 moves from goal
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1013,7 +800,7 @@ Test 14a: check moves() with random solvable n-by-n boards
         Number of calls to methods in MinPQ exceeds limit: 10000000
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    - failed on trial 9 of 200
+    - failed on trial 22 of 200
 
 ==> FAILED
 
@@ -1026,7 +813,7 @@ Test 14b: check solution() with random solvable n-by-n boards
          1  2
          3  0
 
-    - failed on trial 9 of 100
+    - failed on trial 12 of 100
 
   * 200 random 3-by-3 boards that are <= 20 moves from goal
     - number of boards in student   solution() = 0
@@ -1037,7 +824,7 @@ Test 14b: check solution() with random solvable n-by-n boards
          4  5  6
          7  8  0
 
-    - failed on trial 13 of 200
+    - failed on trial 6 of 200
 
   * 200 random 4-by-4 boards that are <= 20 moves from goal
 
@@ -1047,7 +834,7 @@ Test 14b: check solution() with random solvable n-by-n boards
         Number of calls to methods in MinPQ exceeds limit: 10000000
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    - failed on trial 3 of 200
+    - failed on trial 4 of 200
 
 ==> FAILED
 
@@ -1126,9 +913,9 @@ Test 1: Measure CPU time and check correctness
 
                filename   moves    n  seconds
 ---------------------------------------------
-=> passed  puzzle20.txt      20    3     0.46
-=> passed  puzzle22.txt      22    3     0.79
-=> passed  puzzle21.txt      21    3     0.52
+=> passed  puzzle20.txt      20    3     0.59
+=> passed  puzzle22.txt      22    3     0.69
+=> passed  puzzle21.txt      21    3     0.62
 ==> 3/25 tests passed
 
 
@@ -1181,3 +968,5 @@ Total: 3/125 tests passed!
 
 
 ================================================================
+
+
