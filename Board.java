@@ -49,7 +49,7 @@ public class Board {
         for (int i = 0; i < rows; i++) {
             for (int n = 0; n < cols; n++) {
                 if (!(i == rows - 1 && n == cols - 1 && boardTiles[i][n] == 0)) {
-                    if (boardTiles[i][n] != compareVal) {
+                    if (boardTiles[i][n] != compareVal && boardTiles[i][n] != 0) {
                         outOfPlace++;
                     }
                 }
@@ -72,8 +72,8 @@ public class Board {
                 }
                 currNum = (i * rows) + 1 + n;
                 if (boardTiles[i][n] != currNum) {
-                    correctRow = boardTiles[i][n] / rows;
-                    correctCol = boardTiles[i][n] / cols - 1;
+                    correctRow = Math.abs(boardTiles[i][n] / rows);
+                    correctCol = Math.abs(boardTiles[i][n] % cols - 1);
                     offset += Math.abs(correctRow - i);
                     offset += Math.abs(correctCol - n);
                 }
