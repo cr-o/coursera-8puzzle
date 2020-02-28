@@ -93,8 +93,8 @@ public class Board {
                 }
                 currNum = (i * rows) + 1 + n;
                 if (boardTiles[i][n] != currNum) {
-                    correctRow = i / rows;
-                    correctCol = n % cols - 1;
+                    correctRow = boardTiles[i][n] / rows;
+                    correctCol = boardTiles[i][n] / cols - 1;
                     offset += Math.abs(correctRow - i);
                     offset += Math.abs(correctCol - n);
                 }
@@ -215,5 +215,7 @@ public class Board {
         int[][] solved = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 0 } };
         Board solvedBoard = new Board(solved);
         boolean b2 = solvedBoard.isGoal();
+        int manhattan = board.manhattan();
+        int hamming = board.hamming();
     }
 }
