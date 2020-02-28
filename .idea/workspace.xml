@@ -49,17 +49,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Board">
+  <component name="RunManager" selected="Application.Solver">
     <configuration name="Board" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Board" />
       <module name="Algorithms, Part I" />
-      <option name="PROGRAM_PARAMETERS" value="puzzle2x2-00.txt" />
+      <option name="PROGRAM_PARAMETERS" value="puzzle2x2-unsolvable3.txt" />
       <method v="2" />
     </configuration>
     <configuration name="Solver" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Solver" />
       <module name="Algorithms, Part I" />
-      <option name="PROGRAM_PARAMETERS" value="puzzle2x2-unsolvable1.txt" />
+      <option name="PROGRAM_PARAMETERS" value="puzzle2x2-04.txt" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -74,21 +74,5 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Board.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="minPQ.min().prevNode.board" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

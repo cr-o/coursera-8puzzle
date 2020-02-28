@@ -25,14 +25,11 @@ public class Solver {
             MinPQ<TreeNode> altMinPQ = new MinPQ<>();
             TreeNode altFirst = new TreeNode(altInitial, altTrackMoves, null);
             altMinPQ.insert(altFirst);
-            Board altPrevBoard = altFirst.board;
 
             int trackMoves = 0;
             MinPQ<TreeNode> minPQ = new MinPQ<>();
             TreeNode first = new TreeNode(initial, trackMoves, null);
             minPQ.insert(first);
-            Board prevBoard = first.board;
-
             while (!minPQ.isEmpty() && !altMinPQ.isEmpty()) {
                 Board deletedMin;
                 Board altDeletedMin;
@@ -51,24 +48,29 @@ public class Solver {
                 }
                 TreeNode ref = minPQ.delMin();
                 deletedMin = ref.board;
-                prevBoard = deletedMin;
                 if (deletedMin.isGoal()) {
                     constructSolution(ref);
                     break;
                 }
                 altTrackMoves++;
                 for (Board altNeighbor : altMinPQ.min().board.neighbors()) {
-                    if (!altNeighbor.equals(altPrevBoard)) {
+                    if (altMinPQ.min().prevNode != null) {
+                        if (!altNeighbor.equals(altMinPQ.min().prevNode.board)) {
+                            TreeNode altNeighborNode = new TreeNode(altNeighbor, altTrackMoves,
+                                                                    altMinPQ.min());
+                            altMinPQ.insert(altNeighborNode);
+                        }
+                    }
+                    else {
                         TreeNode altNeighborNode = new TreeNode(altNeighbor, altTrackMoves,
                                                                 altMinPQ.min());
                         altMinPQ.insert(altNeighborNode);
                     }
                 }
                 altDeletedMin = altMinPQ.delMin().board;
-                altPrevBoard = altDeletedMin;
-                if (deletedMin.isGoal()) {
+                if (altDeletedMin.isGoal()) {
                     solveMoves = -1;
-                    solutionStack = null;
+                    constructSolution(null);
                     break;
                 }
             }

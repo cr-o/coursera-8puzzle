@@ -15,31 +15,11 @@ public class Board {
     private int[][] boardTiles;
     private int rows;
     private int cols;
-    private int[][] goalBoard;
 
     public Board(int[][] tiles) {
         boardTiles = tiles;
         rows = boardTiles.length;
         cols = boardTiles[0].length;
-        makeGoalBoard();
-    }
-
-    private void makeGoalBoard() {
-        goalBoard = new int[rows][cols];
-        int fillVal = 1;
-        for (int i = 0; i < rows; i++) {
-            for (int n = 0; n < cols; n++) {
-                if (i == rows - 1 && n == cols - 1) {
-                    fillVal = 0;
-                }
-                goalBoard[i][n] = fillVal;
-                fillVal++;
-            }
-        }
-    }
-
-    private int[][] getGoalBoard() {
-        return goalBoard;
     }
 
     // string representation of this board
@@ -68,11 +48,10 @@ public class Board {
         int outOfPlace = 0;
         for (int i = 0; i < rows; i++) {
             for (int n = 0; n < cols; n++) {
-                if (i == rows - 1 && n == cols - 1 && boardTiles[i][n] != 0) {
-                    outOfPlace++;
-                }
-                else if (boardTiles[i][n] != compareVal) {
-                    outOfPlace++;
+                if (!(i == rows - 1 && n == cols - 1 && boardTiles[i][n] == 0)) {
+                    if (boardTiles[i][n] != compareVal) {
+                        outOfPlace++;
+                    }
                 }
                 compareVal++;
             }
@@ -105,7 +84,7 @@ public class Board {
 
     // is this board the goal board?
     public boolean isGoal() {
-        return Arrays.deepEquals(boardTiles, getGoalBoard());
+        return hamming() == 0;
     }
 
     // does this board equal y?
