@@ -17,7 +17,8 @@ public class Solver {
     public Solver(Board initial) {
         if (initial.isGoal()) {
             solveMoves = 0;
-            constructSolution(null);
+            TreeNode first = new TreeNode(initial, 0, null);
+            constructSolution(first);
         }
         else {
             Board altInitial = initial.twin();

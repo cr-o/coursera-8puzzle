@@ -1,5 +1,3 @@
-See the Assessment Guide for information on how to interpret this report.
-
 ASSESSMENT SUMMARY
 
 Compilation:  PASSED
@@ -9,19 +7,19 @@ Spotbugs:     FAILED (7 warnings)
 PMD:          FAILED (14 warnings)
 Checkstyle:   FAILED (0 errors, 1 warning)
 
-Correctness:  33/51 tests passed
+Correctness:  35/51 tests passed
 Memory:       15/22 tests passed
 Timing:       3/125 tests passed
 
-Aggregate score: 56.12%
+Aggregate score: 58.47%
 [Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-7.2K Feb 28 16:03 Board.java
-5.5K Feb 28 16:03 Solver.java
+7.2K Feb 28 16:32 Board.java
+5.5K Feb 28 16:32 Solver.java
 
 
 ********************************************************************************
@@ -61,7 +59,7 @@ M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'bl' but tha
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'it' but that value is never used.  At Board.java:[line 210]
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'hamming' but that value is never used.  At Board.java:[line 217]
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'b2' but that value is never used.  At Board.java:[line 215]
-M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'manhattanPriority' is never read. Consider removing it from the class.  At Solver.java:[line 83]
+M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'manhattanPriority' is never read. Consider removing it from the class.  At Solver.java:[line 84]
 Warnings generated: 7
 
 
@@ -79,11 +77,11 @@ Board.java:212: Avoid unused local variables, such as 'bl'. [UnusedLocalVariable
 Board.java:215: Avoid unused local variables, such as 'b2'. [UnusedLocalVariable]
 Board.java:216: Avoid unused local variables, such as 'manhattan'. [UnusedLocalVariable]
 Board.java:217: Avoid unused local variables, such as 'hamming'. [UnusedLocalVariable]
-Solver.java:81: The private instance (or static) variable 'board' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:82: The private instance (or static) variable 'moves' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:83: The private instance (or static) variable 'manhattanPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:84: The private instance (or static) variable 'hammingPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:85: The private instance (or static) variable 'prevNode' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:82: The private instance (or static) variable 'board' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:83: The private instance (or static) variable 'moves' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:84: The private instance (or static) variable 'manhattanPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:85: The private instance (or static) variable 'hammingPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:86: The private instance (or static) variable 'prevNode' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 PMD ends with 14 warnings.
 
 
@@ -98,7 +96,7 @@ PMD ends with 14 warnings.
 
 % custom checkstyle checks for Solver.java
 *-----------------------------------------------------------
-[WARN] Solver.java:92:45: You should not need to call 'hamming()' in this program. Instead, submit the version with 'manhattan()'. [Performance]
+[WARN] Solver.java:93:45: You should not need to call 'hamming()' in this program. Instead, submit the version with 'manhattan()'. [Performance]
 Checkstyle ends with 0 errors and 1 warning.
 
 
@@ -417,21 +415,6 @@ Test 1a: check moves() with file inputs
 
 Test 1b: check solution() with file inputs
   * puzzle00.txt
-    - number of boards in student   solution() = 0
-    - number of boards in reference solution() = 1
-    - initial board =
-        10
-         1  2  3  4  5  6  7  8  9 10
-        11 12 13 14 15 16 17 18 19 20
-        21 22 23 24 25 26 27 28 29 30
-        31 32 33 34 35 36 37 38 39 40
-        41 42 43 44 45 46 47 48 49 50
-        51 52 53 54 55 56 57 58 59 60
-        61 62 63 64 65 66 67 68 69 70
-        71 72 73 74 75 76 77 78 79 80
-        81 82 83 84 85 86 87 88 89 90
-        91 92 93 94 95 96 97 98 99  0
-
   * puzzle01.txt
   * puzzle02.txt
   * puzzle03.txt
@@ -445,7 +428,7 @@ Test 1b: check solution() with file inputs
   * puzzle11.txt
   * puzzle12.txt
   * puzzle13.txt
-==> FAILED
+==> passed
 
 Test 2a: check moves() with more file inputs
   * puzzle14.txt
@@ -483,11 +466,11 @@ Test 3a: check moves() with random solvable n-by-n boards
     - reference moves() = 8
     - initial board =
         3
-         1  5  2
-         7  0  3
-         8  4  6
+         1  6  2
+         5  0  3
+         4  7  8
 
-    - failed on trial 71 of 1000
+    - failed on trial 6 of 1000
 
 ==> FAILED
 
@@ -510,7 +493,7 @@ Test 3b: check solution() with random solvable n-by-n boards
          5  0  3
          4  7  8
 
-    - failed on trial 2 of 1000
+    - failed on trial 5 of 1000
 
 ==> FAILED
 
@@ -642,20 +625,13 @@ Test 11a: check moves() with 2-by-2 file inputs
 
 Test 11b: check solution() with 2-by-2 file inputs
   * puzzle2x2-00.txt
-    - number of boards in student   solution() = 0
-    - number of boards in reference solution() = 1
-    - initial board =
-        2
-         1  2
-         3  0
-
   * puzzle2x2-01.txt
   * puzzle2x2-02.txt
   * puzzle2x2-03.txt
   * puzzle2x2-04.txt
   * puzzle2x2-05.txt
   * puzzle2x2-06.txt
-==> FAILED
+==> passed
 
 Test 12a: check moves() with 3-by-3 file inputs
   * puzzle3x3-00.txt
@@ -690,14 +666,6 @@ Test 12a: check moves() with 3-by-3 file inputs
 
 Test 12b: check solution() with 3-by-3 file inputs
   * puzzle3x3-00.txt
-    - number of boards in student   solution() = 0
-    - number of boards in reference solution() = 1
-    - initial board =
-        3
-         1  2  3
-         4  5  6
-         7  8  0
-
   * puzzle3x3-01.txt
   * puzzle3x3-02.txt
   * puzzle3x3-03.txt
@@ -756,15 +724,6 @@ Test 13a: check moves() with 4-by-4 file inputs
 
 Test 13b: check solution() with 4-by-4 file inputs
   * puzzle4x4-00.txt
-    - number of boards in student   solution() = 0
-    - number of boards in reference solution() = 1
-    - initial board =
-        4
-         1  2  3  4
-         5  6  7  8
-         9 10 11 12
-        13 14 15  0
-
   * puzzle4x4-01.txt
   * puzzle4x4-02.txt
   * puzzle4x4-03.txt
@@ -800,33 +759,13 @@ Test 14a: check moves() with random solvable n-by-n boards
         Number of calls to methods in MinPQ exceeds limit: 10000000
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    - failed on trial 22 of 200
+    - failed on trial 32 of 200
 
 ==> FAILED
 
 Test 14b: check solution() with random solvable n-by-n boards
   * 100 random 2-by-2 boards that are <= 6 moves from goal
-    - number of boards in student   solution() = 0
-    - number of boards in reference solution() = 1
-    - initial board =
-        2
-         1  2
-         3  0
-
-    - failed on trial 12 of 100
-
   * 200 random 3-by-3 boards that are <= 20 moves from goal
-    - number of boards in student   solution() = 0
-    - number of boards in reference solution() = 1
-    - initial board =
-        3
-         1  2  3
-         4  5  6
-         7  8  0
-
-    - failed on trial 6 of 200
-
-  * 200 random 4-by-4 boards that are <= 20 moves from goal
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -834,12 +773,12 @@ Test 14b: check solution() with random solvable n-by-n boards
         Number of calls to methods in MinPQ exceeds limit: 10000000
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    - failed on trial 4 of 200
+    - failed on trial 51 of 200
 
 ==> FAILED
 
 
-Total: 7/25 tests passed!
+Total: 9/25 tests passed!
 
 
 ================================================================
@@ -913,9 +852,9 @@ Test 1: Measure CPU time and check correctness
 
                filename   moves    n  seconds
 ---------------------------------------------
-=> passed  puzzle20.txt      20    3     0.59
-=> passed  puzzle22.txt      22    3     0.69
-=> passed  puzzle21.txt      21    3     0.62
+=> passed  puzzle20.txt      20    3     0.46
+=> passed  puzzle22.txt      22    3     0.95
+=> passed  puzzle21.txt      21    3     0.55
 ==> 3/25 tests passed
 
 
@@ -968,5 +907,3 @@ Total: 3/125 tests passed!
 
 
 ================================================================
-
-
