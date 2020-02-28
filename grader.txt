@@ -9,19 +9,19 @@ Spotbugs:     FAILED (6 warnings)
 PMD:          FAILED (14 warnings)
 Checkstyle:   PASSED
 
-Correctness:  36/51 tests passed
-Memory:       15/22 tests passed
-Timing:       8/125 tests passed
+Correctness:  47/51 tests passed
+Memory:       18/22 tests passed
+Timing:       110/125 tests passed
 
-Aggregate score: 60.45%
+Aggregate score: 91.08%
 [Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-7.2K Feb 28 17:29 Board.java
-5.6K Feb 28 17:29 Solver.java
+7.2K Feb 28 18:59 Board.java
+5.6K Feb 28 18:59 Solver.java
 
 
 ********************************************************************************
@@ -79,10 +79,10 @@ Board.java:215: Avoid unused local variables, such as 'b2'. [UnusedLocalVariable
 Board.java:216: Avoid unused local variables, such as 'manhattan'. [UnusedLocalVariable]
 Board.java:217: Avoid unused local variables, such as 'hamming'. [UnusedLocalVariable]
 Solver.java:19: Unnecessary use of fully qualified name 'java.lang.IllegalArgumentException' due to existing implicit import 'java.lang.*'. [UnnecessaryFullyQualifiedName]
-Solver.java:85: The private instance (or static) variable 'board' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:86: The private instance (or static) variable 'moves' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:87: The private instance (or static) variable 'manhattanPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:89: The private instance (or static) variable 'prevNode' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:81: The private instance (or static) variable 'board' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:82: The private instance (or static) variable 'moves' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:83: The private instance (or static) variable 'manhattanPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:85: The private instance (or static) variable 'prevNode' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
 PMD ends with 14 warnings.
 
 
@@ -431,25 +431,45 @@ Test 1b: check solution() with file inputs
 
 Test 2a: check moves() with more file inputs
   * puzzle14.txt
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==> FAILED
+  * puzzle15.txt
+  * puzzle16.txt
+  * puzzle17.txt
+  * puzzle18.txt
+  * puzzle19.txt
+  * puzzle20.txt
+  * puzzle21.txt
+  * puzzle22.txt
+  * puzzle23.txt
+  * puzzle24.txt
+  * puzzle25.txt
+  * puzzle26.txt
+  * puzzle27.txt
+  * puzzle28.txt
+  * puzzle29.txt
+  * puzzle30.txt
+  * puzzle31.txt
+==> passed
 
 Test 2b: check solution() with more file inputs
   * puzzle14.txt
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==> FAILED
+  * puzzle15.txt
+  * puzzle16.txt
+  * puzzle17.txt
+  * puzzle18.txt
+  * puzzle19.txt
+  * puzzle20.txt
+  * puzzle21.txt
+  * puzzle22.txt
+  * puzzle23.txt
+  * puzzle24.txt
+  * puzzle25.txt
+  * puzzle26.txt
+  * puzzle27.txt
+  * puzzle28.txt
+  * puzzle29.txt
+  * puzzle30.txt
+  * puzzle31.txt
+==> passed
 
 Test 3a: check moves() with random solvable n-by-n boards
   * 1000 random 3-by-3 boards that are exactly 1 move from goal
@@ -460,18 +480,11 @@ Test 3a: check moves() with random solvable n-by-n boards
   * 1000 random 3-by-3 boards that are exactly 6 moves from goal
   * 1000 random 3-by-3 boards that are exactly 7 moves from goal
   * 1000 random 3-by-3 boards that are exactly 8 moves from goal
-    - moves() returns wrong value
-    - student   moves() = 10
-    - reference moves() = 8
-    - initial board =
-        3
-         1  3  6
-         5  0  2
-         4  7  8
-
-    - failed on trial 75 of 1000
-
-==> FAILED
+  * 1000 random 3-by-3 boards that are exactly 9 moves from goal
+  * 1000 random 3-by-3 boards that are exactly 10 moves from goal
+  * 1000 random 3-by-3 boards that are exactly 11 moves from goal
+  * 1000 random 3-by-3 boards that are exactly 12 moves from goal
+==> passed
 
 Test 3b: check solution() with random solvable n-by-n boards
   * 1000 random 3-by-3 boards that are exactly 1 move from goal
@@ -482,19 +495,11 @@ Test 3b: check solution() with random solvable n-by-n boards
   * 1000 random 3-by-3 boards that are exactly 6 moves from goal
   * 1000 random 3-by-3 boards that are exactly 7 moves from goal
   * 1000 random 3-by-3 boards that are exactly 8 moves from goal
-    - student solution() returns a sequence of moves that leads to goal state
-      but not a shortest such sequence
-    - number of boards in student   solution() = 11
-    - number of boards in reference solution() = 9
-    - initial board =
-        3
-         1  3  6
-         5  0  2
-         4  7  8
-
-    - failed on trial 1 of 1000
-
-==> FAILED
+  * 1000 random 3-by-3 boards that are exactly 9 moves from goal
+  * 1000 random 3-by-3 boards that are exactly 10 moves from goal
+  * 1000 random 3-by-3 boards that are exactly 11 moves from goal
+  * 1000 random 3-by-3 boards that are exactly 12 moves from goal
+==> passed
 
 Test 4: create two Solver objects at the same time
   * puzzle04.txt and puzzle04.txt
@@ -508,7 +513,6 @@ Test 5a: call isSolvable() with file inputs
   * puzzle04.txt
   * puzzle17.txt
   * puzzle3x3-unsolvable1.txt
-  * puzzle3x3-unsolvable2.txt
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -524,9 +528,6 @@ Test 5b: call isSolvable() on random n-by-n boards
 
 Test 6: check moves() on unsolvable puzzles
   * puzzle2x2-unsolvable1.txt
-  * puzzle2x2-unsolvable2.txt
-  * puzzle3x3-unsolvable1.txt
-  * puzzle3x3-unsolvable2.txt
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -538,9 +539,6 @@ Test 6: check moves() on unsolvable puzzles
 
 Test 7: check solution() on unsolvable puzzles
   * puzzle2x2-unsolvable1.txt
-  * puzzle2x2-unsolvable2.txt
-  * puzzle3x3-unsolvable1.txt
-  * puzzle3x3-unsolvable2.txt
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -562,7 +560,6 @@ Test 8a: check that Solver is immutable by testing whether methods
 Test 8b: check that Solver is immutable by testing whether methods
          return the same value, regardless of order in which called
   * puzzle3x3-unsolvable1.txt
-  * puzzle3x3-unsolvable2.txt
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -596,14 +593,7 @@ Test 9c: check that equals() method in Board is called only
   * puzzle05.txt
   * puzzle10.txt
   * puzzle27.txt
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==> FAILED
+==> passed
 
 Test 10: check that constructor throws exception if board is null
 ==> passed
@@ -643,15 +633,6 @@ Test 12a: check moves() with 3-by-3 file inputs
   * puzzle3x3-11.txt
   * puzzle3x3-12.txt
   * puzzle3x3-13.txt
-    - moves() returns wrong value
-    - student   moves() = 15
-    - reference moves() = 13
-    - initial board =
-        3
-         4  3  1
-         0  7  2
-         8  5  6
-
   * puzzle3x3-14.txt
   * puzzle3x3-15.txt
   * puzzle3x3-16.txt
@@ -660,14 +641,16 @@ Test 12a: check moves() with 3-by-3 file inputs
   * puzzle3x3-19.txt
   * puzzle3x3-20.txt
   * puzzle3x3-21.txt
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==> FAILED
+  * puzzle3x3-22.txt
+  * puzzle3x3-23.txt
+  * puzzle3x3-24.txt
+  * puzzle3x3-25.txt
+  * puzzle3x3-26.txt
+  * puzzle3x3-27.txt
+  * puzzle3x3-28.txt
+  * puzzle3x3-29.txt
+  * puzzle3x3-30.txt
+==> passed
 
 Test 12b: check solution() with 3-by-3 file inputs
   * puzzle3x3-00.txt
@@ -684,16 +667,6 @@ Test 12b: check solution() with 3-by-3 file inputs
   * puzzle3x3-11.txt
   * puzzle3x3-12.txt
   * puzzle3x3-13.txt
-    - student solution() returns a sequence of moves that leads to goal state
-      but not a shortest such sequence
-    - number of boards in student   solution() = 16
-    - number of boards in reference solution() = 14
-    - initial board =
-        3
-         4  3  1
-         0  7  2
-         8  5  6
-
   * puzzle3x3-14.txt
   * puzzle3x3-15.txt
   * puzzle3x3-16.txt
@@ -702,14 +675,16 @@ Test 12b: check solution() with 3-by-3 file inputs
   * puzzle3x3-19.txt
   * puzzle3x3-20.txt
   * puzzle3x3-21.txt
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==> FAILED
+  * puzzle3x3-22.txt
+  * puzzle3x3-23.txt
+  * puzzle3x3-24.txt
+  * puzzle3x3-25.txt
+  * puzzle3x3-26.txt
+  * puzzle3x3-27.txt
+  * puzzle3x3-28.txt
+  * puzzle3x3-29.txt
+  * puzzle3x3-30.txt
+==> passed
 
 Test 13a: check moves() with 4-by-4 file inputs
   * puzzle4x4-00.txt
@@ -729,14 +704,21 @@ Test 13a: check moves() with 4-by-4 file inputs
   * puzzle4x4-14.txt
   * puzzle4x4-15.txt
   * puzzle4x4-16.txt
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==> FAILED
+  * puzzle4x4-17.txt
+  * puzzle4x4-18.txt
+  * puzzle4x4-19.txt
+  * puzzle4x4-20.txt
+  * puzzle4x4-21.txt
+  * puzzle4x4-22.txt
+  * puzzle4x4-23.txt
+  * puzzle4x4-24.txt
+  * puzzle4x4-25.txt
+  * puzzle4x4-26.txt
+  * puzzle4x4-27.txt
+  * puzzle4x4-28.txt
+  * puzzle4x4-29.txt
+  * puzzle4x4-30.txt
+==> passed
 
 Test 13b: check solution() with 4-by-4 file inputs
   * puzzle4x4-00.txt
@@ -756,70 +738,38 @@ Test 13b: check solution() with 4-by-4 file inputs
   * puzzle4x4-14.txt
   * puzzle4x4-15.txt
   * puzzle4x4-16.txt
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==> FAILED
+  * puzzle4x4-17.txt
+  * puzzle4x4-18.txt
+  * puzzle4x4-19.txt
+  * puzzle4x4-20.txt
+  * puzzle4x4-21.txt
+  * puzzle4x4-22.txt
+  * puzzle4x4-23.txt
+  * puzzle4x4-24.txt
+  * puzzle4x4-25.txt
+  * puzzle4x4-26.txt
+  * puzzle4x4-27.txt
+  * puzzle4x4-28.txt
+  * puzzle4x4-29.txt
+  * puzzle4x4-30.txt
+==> passed
 
 Test 14a: check moves() with random solvable n-by-n boards
   * 100 random 2-by-2 boards that are <= 6 moves from goal
   * 200 random 3-by-3 boards that are <= 20 moves from goal
-    - moves() returns wrong value
-    - student   moves() = 17
-    - reference moves() = 15
-    - initial board =
-        3
-         5  0  1
-         4  7  2
-         8  6  3
-
-    - failed on trial 34 of 200
-
   * 200 random 4-by-4 boards that are <= 20 moves from goal
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-    - failed on trial 16 of 200
-
-==> FAILED
+  * 200 random 5-by-5 boards that are <= 20 moves from goal
+==> passed
 
 Test 14b: check solution() with random solvable n-by-n boards
   * 100 random 2-by-2 boards that are <= 6 moves from goal
   * 200 random 3-by-3 boards that are <= 20 moves from goal
-    - student solution() returns a sequence of moves that leads to goal state
-      but not a shortest such sequence
-    - number of boards in student   solution() = 18
-    - number of boards in reference solution() = 16
-    - initial board =
-        3
-         3  5  6
-         0  2  8
-         1  4  7
-
-    - failed on trial 19 of 200
-
   * 200 random 4-by-4 boards that are <= 20 moves from goal
+  * 200 random 5-by-5 boards that are <= 20 moves from goal
+==> passed
 
 
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 10000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-    - failed on trial 3 of 200
-
-==> FAILED
-
-
-Total: 10/25 tests passed!
+Total: 21/25 tests passed!
 
 
 ================================================================
@@ -834,14 +784,6 @@ Running 12 total tests.
 Maximum allowed time per puzzle is 5.0 seconds.
 Maximum allowed memory per puzzle = 200000000 bytes.
 
-failed when solving puzzle25.txt
-
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in MinPQ exceeds limit: 20000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
 Test 1: Measure memory of Solver.
 
                filename   moves   memory
@@ -849,7 +791,10 @@ Test 1: Measure memory of Solver.
 => passed  puzzle10.txt      10     4640
 => passed  puzzle15.txt      15     5568
 => passed  puzzle20.txt      20     2752
-==> 3/6 tests passed
+=> passed  puzzle25.txt      25     3392
+=> passed  puzzle30.txt      30     4032
+=> passed  puzzle35.txt      35     5536
+==> 6/6 tests passed
 
 
 
@@ -858,13 +803,16 @@ Test 2: Measure memory of MinPQ.
                               deep              max           ending
                filename     memory             size             size
 --------------------------------------------------------------------
-=> passed  puzzle10.txt      29456               35               34
-=> passed  puzzle15.txt      36664               53               52
-=> FAILED  puzzle20.txt   43596080 (122.2x)  124392 (121.1x)  124391 (121.2x)
+=> passed  puzzle10.txt      35760               59               59
+=> passed  puzzle15.txt      38720               73               73
+=> FAILED  puzzle20.txt     429312   (1.2x)    2320   (2.3x)    2320   (2.3x)
+=> FAILED  puzzle25.txt    2481616            12632   (1.7x)   12632   (1.7x)
+=> FAILED  puzzle30.txt    7341136            35043   (1.2x)   35043   (1.2x)
+=> FAILED  puzzle35.txt  152543768           706191   (1.5x)  706191   (1.5x)
 ==> 2/6 tests passed
 
 
-Total: 5/12 tests passed!
+Total: 8/12 tests passed!
 
 
 ================================================================
@@ -881,7 +829,7 @@ Running 125 total tests.
 
 Maximum allowed time per puzzle is 5.0 seconds.
 
-failed when solving puzzle24.txt
+failed when solving puzzle45.txt
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -893,11 +841,31 @@ Test 1: Measure CPU time and check correctness
 
                filename   moves    n  seconds
 ---------------------------------------------
-=> passed  puzzle20.txt      20    3     0.23
-=> passed  puzzle22.txt      22    3     0.61
-=> passed  puzzle21.txt      21    3     0.19
-=> passed  puzzle23.txt      23    3     2.27
-==> 4/25 tests passed
+=> passed  puzzle20.txt      20    3     0.01
+=> passed  puzzle22.txt      22    3     0.00
+=> passed  puzzle21.txt      21    3     0.00
+=> passed  puzzle23.txt      23    3     0.01
+=> passed  puzzle24.txt      24    3     0.00
+=> passed  puzzle25.txt      25    3     0.01
+=> passed  puzzle27.txt      27    3     0.01
+=> passed  puzzle29.txt      29    3     0.01
+=> passed  puzzle26.txt      26    3     0.00
+=> passed  puzzle28.txt      28    3     0.01
+=> passed  puzzle30.txt      30    3     0.02
+=> passed  puzzle31.txt      31    3     0.02
+=> passed  puzzle39.txt      39    4     0.12
+=> passed  puzzle41.txt      41    5     0.06
+=> passed  puzzle34.txt      34    4     0.16
+=> passed  puzzle37.txt      37    4     0.06
+=> passed  puzzle44.txt      44    5     0.07
+=> passed  puzzle32.txt      32    4     0.28
+=> passed  puzzle35.txt      35    4     0.38
+=> passed  puzzle33.txt      33    4     0.31
+=> passed  puzzle43.txt      43    4     0.98
+=> passed  puzzle46.txt      46    4     0.31
+=> passed  puzzle40.txt      40    4     0.63
+=> passed  puzzle36.txt      36    4     1.80
+==> 24/25 tests passed
 
 
 
@@ -905,11 +873,31 @@ Test 2: Count MinPQ operations
 
                filename   insert()         delMin()
 ---------------------------------------------------
-=> FAILED  puzzle20.txt     295516 (117.4x)  171125 (114.6x)
-=> FAILED  puzzle22.txt     694704 (114.0x)  401283 (110.7x)
-=> FAILED  puzzle21.txt     313895  (50.7x)  178015  (48.9x)
-=> FAILED  puzzle23.txt    2648130 (285.6x) 1531767 (277.9x)
-==> 0/25 tests passed
+=> FAILED  puzzle20.txt       2814   (1.1x)     494
+=> passed  puzzle22.txt       3014              815
+=> passed  puzzle21.txt       3623              771
+=> passed  puzzle23.txt       9686             2069
+=> passed  puzzle24.txt       7108             1250
+=> passed  puzzle25.txt      16065             3433
+=> passed  puzzle27.txt      15761             3375
+=> FAILED  puzzle29.txt      39500   (1.9x)    8496
+=> passed  puzzle26.txt       5801             1584
+=> passed  puzzle28.txt      36474             6430
+=> passed  puzzle30.txt      48216            13173
+=> passed  puzzle31.txt      63594            13697
+=> FAILED  puzzle39.txt     290964   (2.3x)   57748
+=> passed  puzzle41.txt     128237            20256
+=> FAILED  puzzle34.txt     371131   (1.4x)   90987
+=> passed  puzzle37.txt     172871            33959
+=> passed  puzzle44.txt     172100            27655
+=> passed  puzzle32.txt     748717           123153
+=> passed  puzzle35.txt     846201           140010
+=> passed  puzzle33.txt     716864           140775
+=> passed  puzzle43.txt    1316375           259118
+=> passed  puzzle46.txt     774891           154434
+=> passed  puzzle40.txt    1289702           319827
+=> passed  puzzle36.txt    3389716           559364
+==> 20/25 tests passed
 
 
 
@@ -921,7 +909,27 @@ Test 3: Count Board operations (that should not get called)
 => passed  puzzle22.txt            0            0
 => passed  puzzle21.txt            0            0
 => passed  puzzle23.txt            0            0
-==> 4/25 tests passed
+=> passed  puzzle24.txt            0            0
+=> passed  puzzle25.txt            0            0
+=> passed  puzzle27.txt            0            0
+=> passed  puzzle29.txt            0            0
+=> passed  puzzle26.txt            0            0
+=> passed  puzzle28.txt            0            0
+=> passed  puzzle30.txt            0            0
+=> passed  puzzle31.txt            0            0
+=> passed  puzzle39.txt            0            0
+=> passed  puzzle41.txt            0            0
+=> passed  puzzle34.txt            0            0
+=> passed  puzzle37.txt            0            0
+=> passed  puzzle44.txt            0            0
+=> passed  puzzle32.txt            0            0
+=> passed  puzzle35.txt            0            0
+=> passed  puzzle33.txt            0            0
+=> passed  puzzle43.txt            0            0
+=> passed  puzzle46.txt            0            0
+=> passed  puzzle40.txt            0            0
+=> passed  puzzle36.txt            0            0
+==> 24/25 tests passed
 
 
 
@@ -929,11 +937,31 @@ Test 4a: Count Board operations (that should get called)
 
                filename    Board()            equals()         manhattan()
 --------------------------------------------------------------------------
-=> FAILED  puzzle20.txt     466639 (116.5x)     466629 (116.5x)     466642  (12.7x)
-=> FAILED  puzzle22.txt    1095985 (112.9x)    1095979 (112.9x)    1095988  (10.7x)
-=> FAILED  puzzle21.txt     491908  (50.0x)     491900  (50.0x)     491911   (4.7x)
-=> FAILED  puzzle23.txt    4179895 (282.8x)    4179887 (282.8x)    4179898  (26.5x)
-==> 0/25 tests passed
+=> passed  puzzle20.txt       3308                1326                3804
+=> passed  puzzle22.txt       3829                2195                4646
+=> passed  puzzle21.txt       4394                2076                5167
+=> passed  puzzle23.txt      11755                5543               13826
+=> passed  puzzle24.txt       8358                3352                9610
+=> passed  puzzle25.txt      19498                9194               22933
+=> passed  puzzle27.txt      19136                9006               22513
+=> FAILED  puzzle29.txt      47996   (1.5x)      22503               56494
+=> passed  puzzle26.txt       7385                4213                8971
+=> passed  puzzle28.txt      42904               17178               49336
+=> passed  puzzle30.txt      61389               35039               74564
+=> passed  puzzle31.txt      77291               36195               90990
+=> FAILED  puzzle39.txt     348712   (1.9x)     175463              406462
+=> passed  puzzle41.txt     148493               67463              168751
+=> FAILED  puzzle34.txt     462118   (1.2x)     280140              553107
+=> passed  puzzle37.txt     206830              104948              240791
+=> passed  puzzle44.txt     199755               89129              227412
+=> passed  puzzle32.txt     871870              379252              995025
+=> passed  puzzle35.txt     986211              426165             1126223
+=> passed  puzzle33.txt     857639              435309              998416
+=> passed  puzzle43.txt    1575493              798134             1834613
+=> passed  puzzle46.txt     929325              466018             1083761
+=> passed  puzzle40.txt    1609529              969871             1929358
+=> passed  puzzle36.txt    3949080             1711618             4508446
+==> 21/25 tests passed
 
 
 
@@ -942,16 +970,34 @@ Test 4b: count Board operations (that should get called),
 
                filename    Board()            equals()         manhattan()
 --------------------------------------------------------------------------
-=> FAILED  puzzle20.txt     466639 (116.5x)     466629 (116.5x)     466642 (116.3x)
-=> FAILED  puzzle22.txt    1095985 (112.9x)    1095979 (112.9x)    1095988 (112.8x)
-=> FAILED  puzzle21.txt     491908  (50.0x)     491900  (50.0x)     491911  (50.0x)
-=> FAILED  puzzle23.txt    4179895 (282.8x)    4179887 (282.8x)    4179898 (282.7x)
-==> 0/25 tests passed
+=> passed  puzzle20.txt       3308                1326                3804
+=> passed  puzzle22.txt       3829                2195                4646
+=> passed  puzzle21.txt       4394                2076                5167
+=> passed  puzzle23.txt      11755                5543               13826
+=> passed  puzzle24.txt       8358                3352                9610
+=> passed  puzzle25.txt      19498                9194               22933
+=> passed  puzzle27.txt      19136                9006               22513
+=> FAILED  puzzle29.txt      47996   (1.5x)      22503               56494   (1.7x)
+=> passed  puzzle26.txt       7385                4213                8971
+=> passed  puzzle28.txt      42904               17178               49336
+=> passed  puzzle30.txt      61389               35039               74564
+=> passed  puzzle31.txt      77291               36195               90990         
+=> FAILED  puzzle39.txt     348712   (1.9x)     175463              406462   (2.2x)
+=> passed  puzzle41.txt     148493               67463              168751
+=> FAILED  puzzle34.txt     462118   (1.2x)     280140              553107   (1.4x)
+=> passed  puzzle37.txt     206830              104948              240791
+=> passed  puzzle44.txt     199755               89129              227412
+=> passed  puzzle32.txt     871870              379252              995025
+=> passed  puzzle35.txt     986211              426165             1126223
+=> passed  puzzle33.txt     857639              435309              998416
+=> passed  puzzle43.txt    1575493              798134             1834613
+=> passed  puzzle46.txt     929325              466018             1083761
+=> passed  puzzle40.txt    1609529              969871             1929358
+=> passed  puzzle36.txt    3949080             1711618             4508446
+==> 21/25 tests passed
 
 
-Total: 8/125 tests passed!
+Total: 110/125 tests passed!
 
 
 ================================================================
-
-

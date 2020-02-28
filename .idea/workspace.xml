@@ -79,18 +79,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Board.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Solver.java</url>
-          <line>54</line>
+          <line>49</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Solver.java</url>
-          <line>74</line>
+          <line>70</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>

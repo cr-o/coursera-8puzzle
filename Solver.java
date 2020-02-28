@@ -25,54 +25,50 @@ public class Solver {
         }
         else {
             Board altInitial = initial.twin();
-            int altTrackMoves = 0;
             MinPQ<TreeNode> altMinPQ = new MinPQ<>();
-            TreeNode altFirst = new TreeNode(altInitial, altTrackMoves, null);
+            TreeNode altFirst = new TreeNode(altInitial, 0, null);
             altMinPQ.insert(altFirst);
 
-            int trackMoves = 0;
             MinPQ<TreeNode> minPQ = new MinPQ<>();
-            TreeNode first = new TreeNode(initial, trackMoves, null);
+            TreeNode first = new TreeNode(initial, 0, null);
             minPQ.insert(first);
             while (!minPQ.isEmpty() && !altMinPQ.isEmpty()) {
-                Board deletedMin;
-                Board altDeletedMin;
-                trackMoves++;
                 for (Board neighbor : minPQ.min().board.neighbors()) {
                     if (minPQ.min().prevNode != null) {
                         if (!neighbor.equals(minPQ.min().prevNode.board)) {
-                            TreeNode neighborNode = new TreeNode(neighbor, trackMoves, minPQ.min());
+                            TreeNode neighborNode = new TreeNode(neighbor, minPQ.min().moves + 1,
+                                                                 minPQ.min());
                             minPQ.insert(neighborNode);
                         }
                     }
                     else {
-                        TreeNode neighborNode = new TreeNode(neighbor, trackMoves, minPQ.min());
+                        TreeNode neighborNode = new TreeNode(neighbor, minPQ.min().moves + 1,
+                                                             minPQ.min());
                         minPQ.insert(neighborNode);
                     }
                 }
-                TreeNode ref = minPQ.delMin();
-                deletedMin = ref.board;
-                if (deletedMin.isGoal()) {
-                    constructSolution(ref);
+                if (minPQ.min().board.isGoal()) {
+                    constructSolution(minPQ.min());
                     break;
                 }
-                altTrackMoves++;
+                minPQ.delMin();
                 for (Board altNeighbor : altMinPQ.min().board.neighbors()) {
                     if (altMinPQ.min().prevNode != null) {
                         if (!altNeighbor.equals(altMinPQ.min().prevNode.board)) {
-                            TreeNode altNeighborNode = new TreeNode(altNeighbor, altTrackMoves,
+                            TreeNode altNeighborNode = new TreeNode(altNeighbor,
+                                                                    altMinPQ.min().moves + 1,
                                                                     altMinPQ.min());
                             altMinPQ.insert(altNeighborNode);
                         }
                     }
                     else {
-                        TreeNode altNeighborNode = new TreeNode(altNeighbor, altTrackMoves,
+                        TreeNode altNeighborNode = new TreeNode(altNeighbor,
+                                                                altMinPQ.min().moves + 1,
                                                                 altMinPQ.min());
                         altMinPQ.insert(altNeighborNode);
                     }
                 }
-                altDeletedMin = altMinPQ.delMin().board;
-                if (altDeletedMin.isGoal()) {
+                if (altMinPQ.min().board.isGoal()) {
                     solveMoves = -1;
                     solutionStack = null;
                     break;
