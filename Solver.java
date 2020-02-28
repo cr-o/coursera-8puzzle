@@ -97,8 +97,8 @@ public class Solver {
         }
 
         public int compareTo(TreeNode other) {
-            return Integer.compare(this.hammingPriority, other.hammingPriority);
-            // return Integer.compare(this.manhattanPriority, other.manhattanPriority);
+            // return Integer.compare(this.hammingPriority, other.hammingPriority);
+            return Integer.compare(this.manhattanPriority, other.manhattanPriority);
         }
     }
 

@@ -1,25 +1,27 @@
+See the Assessment Guide for information on how to interpret this report.
+
 ASSESSMENT SUMMARY
 
 Compilation:  PASSED
 API:          PASSED
 
 Spotbugs:     FAILED (7 warnings)
-PMD:          FAILED (14 warnings)
+PMD:          FAILED (15 warnings)
 Checkstyle:   FAILED (0 errors, 1 warning)
 
-Correctness:  35/51 tests passed
+Correctness:  36/51 tests passed
 Memory:       15/22 tests passed
-Timing:       3/125 tests passed
+Timing:       4/125 tests passed
 
-Aggregate score: 58.47%
+Aggregate score: 59.81%
 [Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-7.2K Feb 28 16:32 Board.java
-5.5K Feb 28 16:32 Solver.java
+7.2K Feb 28 17:25 Board.java
+5.6K Feb 28 17:25 Solver.java
 
 
 ********************************************************************************
@@ -59,7 +61,7 @@ M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'bl' but tha
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'it' but that value is never used.  At Board.java:[line 210]
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'hamming' but that value is never used.  At Board.java:[line 217]
 M D DLS_DEAD_LOCAL_STORE DLS: Assigns a value to the local variable 'b2' but that value is never used.  At Board.java:[line 215]
-M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'manhattanPriority' is never read. Consider removing it from the class.  At Solver.java:[line 84]
+M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'hammingPriority' is never read. Consider removing it from the class.  At Solver.java:[line 88]
 Warnings generated: 7
 
 
@@ -77,12 +79,13 @@ Board.java:212: Avoid unused local variables, such as 'bl'. [UnusedLocalVariable
 Board.java:215: Avoid unused local variables, such as 'b2'. [UnusedLocalVariable]
 Board.java:216: Avoid unused local variables, such as 'manhattan'. [UnusedLocalVariable]
 Board.java:217: Avoid unused local variables, such as 'hamming'. [UnusedLocalVariable]
-Solver.java:82: The private instance (or static) variable 'board' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:83: The private instance (or static) variable 'moves' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:84: The private instance (or static) variable 'manhattanPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:85: The private instance (or static) variable 'hammingPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-Solver.java:86: The private instance (or static) variable 'prevNode' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-PMD ends with 14 warnings.
+Solver.java:19: Unnecessary use of fully qualified name 'java.lang.IllegalArgumentException' due to existing implicit import 'java.lang.*'. [UnnecessaryFullyQualifiedName]
+Solver.java:85: The private instance (or static) variable 'board' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:86: The private instance (or static) variable 'moves' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:87: The private instance (or static) variable 'manhattanPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:88: The private instance (or static) variable 'hammingPriority' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+Solver.java:89: The private instance (or static) variable 'prevNode' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
+PMD ends with 15 warnings.
 
 
 ================================================================
@@ -96,7 +99,7 @@ PMD ends with 14 warnings.
 
 % custom checkstyle checks for Solver.java
 *-----------------------------------------------------------
-[WARN] Solver.java:93:45: You should not need to call 'hamming()' in this program. Instead, submit the version with 'manhattan()'. [Performance]
+[WARN] Solver.java:96:45: You should not need to call 'hamming()' in this program. Instead, submit the version with 'manhattan()'. [Performance]
 Checkstyle ends with 0 errors and 1 warning.
 
 
@@ -466,11 +469,11 @@ Test 3a: check moves() with random solvable n-by-n boards
     - reference moves() = 8
     - initial board =
         3
-         1  6  2
-         5  0  3
+         1  3  6
+         5  0  2
          4  7  8
 
-    - failed on trial 6 of 1000
+    - failed on trial 3 of 1000
 
 ==> FAILED
 
@@ -489,11 +492,11 @@ Test 3b: check solution() with random solvable n-by-n boards
     - number of boards in reference solution() = 9
     - initial board =
         3
-         1  6  2
-         5  0  3
+         1  3  6
+         5  0  2
          4  7  8
 
-    - failed on trial 5 of 1000
+    - failed on trial 163 of 1000
 
 ==> FAILED
 
@@ -607,11 +610,7 @@ Test 9c: check that equals() method in Board is called only
 ==> FAILED
 
 Test 10: check that constructor throws exception if board is null
-    - throws wrong exception when calling constructor with a null argument
-    - throws a java.lang.NullPointerException
-    - should throw a java.lang.IllegalArgumentException
-
-==> FAILED
+==> passed
 
 Test 11a: check moves() with 2-by-2 file inputs
   * puzzle2x2-00.txt
@@ -648,6 +647,15 @@ Test 12a: check moves() with 3-by-3 file inputs
   * puzzle3x3-11.txt
   * puzzle3x3-12.txt
   * puzzle3x3-13.txt
+    - moves() returns wrong value
+    - student   moves() = 15
+    - reference moves() = 13
+    - initial board =
+        3
+         4  3  1
+         0  7  2
+         8  5  6
+
   * puzzle3x3-14.txt
   * puzzle3x3-15.txt
   * puzzle3x3-16.txt
@@ -655,6 +663,7 @@ Test 12a: check moves() with 3-by-3 file inputs
   * puzzle3x3-18.txt
   * puzzle3x3-19.txt
   * puzzle3x3-20.txt
+  * puzzle3x3-21.txt
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -679,6 +688,16 @@ Test 12b: check solution() with 3-by-3 file inputs
   * puzzle3x3-11.txt
   * puzzle3x3-12.txt
   * puzzle3x3-13.txt
+    - student solution() returns a sequence of moves that leads to goal state
+      but not a shortest such sequence
+    - number of boards in student   solution() = 16
+    - number of boards in reference solution() = 14
+    - initial board =
+        3
+         4  3  1
+         0  7  2
+         8  5  6
+
   * puzzle3x3-14.txt
   * puzzle3x3-15.txt
   * puzzle3x3-16.txt
@@ -686,6 +705,7 @@ Test 12b: check solution() with 3-by-3 file inputs
   * puzzle3x3-18.txt
   * puzzle3x3-19.txt
   * puzzle3x3-20.txt
+  * puzzle3x3-21.txt
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -752,6 +772,18 @@ Test 13b: check solution() with 4-by-4 file inputs
 Test 14a: check moves() with random solvable n-by-n boards
   * 100 random 2-by-2 boards that are <= 6 moves from goal
   * 200 random 3-by-3 boards that are <= 20 moves from goal
+    - moves() returns wrong value
+    - student   moves() = 22
+    - reference moves() = 16
+    - initial board =
+        3
+         4  1  5
+         7  6  3
+         8  2  0
+
+    - failed on trial 10 of 200
+
+  * 200 random 4-by-4 boards that are <= 20 moves from goal
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -759,13 +791,40 @@ Test 14a: check moves() with random solvable n-by-n boards
         Number of calls to methods in MinPQ exceeds limit: 10000000
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    - failed on trial 32 of 200
+    - failed on trial 8 of 200
 
 ==> FAILED
 
 Test 14b: check solution() with random solvable n-by-n boards
   * 100 random 2-by-2 boards that are <= 6 moves from goal
   * 200 random 3-by-3 boards that are <= 20 moves from goal
+    - student solution() returns a sequence of moves that leads to goal state
+      but not a shortest such sequence
+    - number of boards in student   solution() = 20
+    - number of boards in reference solution() = 16
+    - initial board =
+        3
+         1  0  2
+         4  6  3
+         8  7  5
+
+    - failed on trial 15 of 200
+
+  * 200 random 4-by-4 boards that are <= 20 moves from goal
+    - student solution() returns a sequence of moves that leads to goal state
+      but not a shortest such sequence
+    - number of boards in student   solution() = 23
+    - number of boards in reference solution() = 17
+    - initial board =
+        4
+         0  5  2  4
+         6  1  3  8
+         9 14  7 10
+        13 15 12 11
+
+    - failed on trial 3 of 200
+
+  * 200 random 5-by-5 boards that are <= 20 moves from goal
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -773,12 +832,12 @@ Test 14b: check solution() with random solvable n-by-n boards
         Number of calls to methods in MinPQ exceeds limit: 10000000
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-    - failed on trial 51 of 200
+    - failed on trial 1 of 200
 
 ==> FAILED
 
 
-Total: 9/25 tests passed!
+Total: 10/25 tests passed!
 
 
 ================================================================
@@ -819,7 +878,7 @@ Test 2: Measure memory of MinPQ.
 --------------------------------------------------------------------
 => passed  puzzle10.txt      29896               35               34
 => passed  puzzle15.txt      37328               53               52
-=> FAILED  puzzle20.txt  106827784 (299.4x)  287725 (280.2x)  287724 (280.4x)
+=> FAILED  puzzle20.txt   45959928 (128.8x)  124392 (121.1x)  124391 (121.2x)
 ==> 2/6 tests passed
 
 
@@ -840,7 +899,7 @@ Running 125 total tests.
 
 Maximum allowed time per puzzle is 5.0 seconds.
 
-failed when solving puzzle23.txt
+failed when solving puzzle24.txt
 
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -852,10 +911,11 @@ Test 1: Measure CPU time and check correctness
 
                filename   moves    n  seconds
 ---------------------------------------------
-=> passed  puzzle20.txt      20    3     0.46
-=> passed  puzzle22.txt      22    3     0.95
-=> passed  puzzle21.txt      21    3     0.55
-==> 3/25 tests passed
+=> passed  puzzle20.txt      20    3     0.21
+=> passed  puzzle22.txt      22    3     0.46
+=> passed  puzzle21.txt      21    3     0.17
+=> passed  puzzle23.txt      23    3     2.18
+==> 4/25 tests passed
 
 
 
@@ -863,9 +923,10 @@ Test 2: Count MinPQ operations
 
                filename   insert()         delMin()
 ---------------------------------------------------
-=> FAILED  puzzle20.txt     675593 (268.3x)  387869 (259.8x)
-=> FAILED  puzzle22.txt     881747 (144.7x)  509817 (140.7x)
-=> FAILED  puzzle21.txt     725626 (117.1x)  412877 (113.4x)
+=> FAILED  puzzle20.txt     295516 (117.4x)  171125 (114.6x)
+=> FAILED  puzzle22.txt     694704 (114.0x)  401283 (110.7x)
+=> FAILED  puzzle21.txt     313895  (50.7x)  178015  (48.9x)
+=> FAILED  puzzle23.txt    2648130 (285.6x) 1531767 (277.9x)
 ==> 0/25 tests passed
 
 
@@ -874,9 +935,10 @@ Test 3: Count Board operations (that should not get called)
 
                filename    hamming()   toString()
 -------------------------------------------------
-=> FAILED  puzzle20.txt          675593  (18.4x)   0
-=> FAILED  puzzle22.txt          881747   (8.6x)   0
-=> FAILED  puzzle21.txt          725626   (6.9x)   0
+=> FAILED  puzzle20.txt          295516   (8.0x)   0
+=> FAILED  puzzle22.txt          694704   (6.8x)   0
+=> FAILED  puzzle21.txt          313895   (3.0x)   0
+=> FAILED  puzzle23.txt          2648130  (16.8x)   0
 ==> 0/25 tests passed
 
 
@@ -885,9 +947,10 @@ Test 4a: Count Board operations (that should get called)
 
                filename    Board()            equals()         manhattan()
 --------------------------------------------------------------------------
-=> FAILED  puzzle20.txt    1063460 (265.5x)    1063450 (265.5x)    1063463  (28.9x)
-=> FAILED  puzzle22.txt    1391562 (143.3x)    1391556 (143.3x)    1391565  (13.5x)
-=> FAILED  puzzle21.txt    1138501 (115.8x)    1138493 (115.8x)    1138504  (10.8x)
+=> FAILED  puzzle20.txt     466639 (116.5x)     466629 (116.5x)     466642  (12.7x)
+=> FAILED  puzzle22.txt    1095985 (112.9x)    1095979 (112.9x)    1095988  (10.7x)
+=> FAILED  puzzle21.txt     491908  (50.0x)     491900  (50.0x)     491911   (4.7x)
+=> FAILED  puzzle23.txt    4179895 (282.8x)    4179887 (282.8x)    4179898  (26.5x)
 ==> 0/25 tests passed
 
 
@@ -897,13 +960,14 @@ Test 4b: count Board operations (that should get called),
 
                filename    Board()            equals()         manhattan()
 --------------------------------------------------------------------------
-=> FAILED  puzzle20.txt    1063460 (265.5x)    1063450 (265.5x)    1063463 (265.0x)
-=> FAILED  puzzle22.txt    1391562 (143.3x)    1391556 (143.3x)    1391565 (143.2x)
-=> FAILED  puzzle21.txt    1138501 (115.8x)    1138493 (115.8x)    1138504 (115.7x)
+=> FAILED  puzzle20.txt     466639 (116.5x)     466629 (116.5x)     466642 (116.3x)
+=> FAILED  puzzle22.txt    1095985 (112.9x)    1095979 (112.9x)    1095988 (112.8x)
+=> FAILED  puzzle21.txt     491908  (50.0x)     491900  (50.0x)     491911  (50.0x)
+=> FAILED  puzzle23.txt    4179895 (282.8x)    4179887 (282.8x)    4179898 (282.7x)
 ==> 0/25 tests passed
 
 
-Total: 3/125 tests passed!
+Total: 4/125 tests passed!
 
 
 ================================================================
