@@ -85,7 +85,7 @@ public class Solver {
         private Board board;
         private int moves = 0;
         private int manhattanPriority = 0;
-        private int hammingPriority = 0;
+        // private int hammingPriority = 0;
         private TreeNode prevNode;
 
         private TreeNode(Board givenBoard, int givenMoves, TreeNode givenPrev) {
@@ -93,7 +93,7 @@ public class Solver {
             moves = givenMoves;
             prevNode = givenPrev;
             manhattanPriority = moves + board.manhattan();
-            hammingPriority = moves + board.hamming();
+            // hammingPriority = moves + board.hamming();
         }
 
         public int compareTo(TreeNode other) {
